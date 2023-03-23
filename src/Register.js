@@ -37,7 +37,7 @@ function Register() {
     setgo(false)
   }
 
-  console.log(user)
+  // console.log(user)
 if(go){
   return (
     <div className='register'>

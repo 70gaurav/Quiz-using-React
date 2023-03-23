@@ -5,6 +5,7 @@ import { scoreContext } from './App';
 function Question() {
   const [count, setCount] = useState(0);
   const {score , setScore} = useContext(scoreContext)
+  const [match, setmatch] = useState("")
   
   const navigate = useNavigate()
   
@@ -95,11 +96,14 @@ function Question() {
 
 
   function handleAnswerSelect(e) {
-    const selectedAnswer = e.target.value
-    console.log(selectedAnswer)
+    
+    setmatch(e.target.value)  
+  }
+  function answer () {
     const correctAnswer = questions[count].answer
-    if (selectedAnswer === correctAnswer) {
+    if (match === correctAnswer) {
       setScore(score + 1);
+      console.log(score)
     }
   }
 
@@ -152,7 +156,7 @@ function Question() {
       <div className='content'>
         {renderContent()}
         {count < questions.length && (
-          <button onClick={() => setCount(count + 1)}>Next</button>
+          <button onClick={() => {setCount(count + 1);answer()}}>Next</button>
         )}
       </div>
     </div>
