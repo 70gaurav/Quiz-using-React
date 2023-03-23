@@ -10,9 +10,10 @@ export const scoreContext = createContext(null)
 
 export default function App() {
   const [score, setScore] = useState(0);
+  const [wronganswer , setwronganswer] =useState([])
 
   return (
-    <scoreContext.Provider value={{score , setScore}}>
+    <scoreContext.Provider value={{score , setScore , wronganswer, setwronganswer}}>
   <BrowserRouter>
   <Header/>
   <Routes>

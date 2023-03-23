@@ -5,7 +5,9 @@ import { scoreContext } from './App';
 function Question() {
   const [count, setCount] = useState(0);
   const {score , setScore} = useContext(scoreContext)
+  const {wronganswer , setwronganswer} = useContext(scoreContext)
   const [match, setmatch] = useState("")
+  
   
   const navigate = useNavigate()
   
@@ -105,7 +107,11 @@ function Question() {
       setScore(score + 1);
       console.log(score)
     }
+    else{
+      setwronganswer([...wronganswer,{...questions[count]}] )
+    }
   }
+  console.log(wronganswer)
 
   function renderQuestion() {
     const currentQuestion = questions[count];
