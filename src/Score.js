@@ -10,7 +10,10 @@ function Score() {
       <h1>Quiz completed</h1>
       <h1>Your score: {score} / 10</h1>
       {score === 0 &&
-        <h1>what a poor performance  </h1>
+        <h1>what a poor performance 🥱</h1>
+      }
+       {score === 10 &&
+        <h1>You are a star performer 😎 </h1>
       }
       {score !== 10 &&
         <h1>You have chosen wrong option of these questions</h1>
