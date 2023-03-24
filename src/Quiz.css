@@ -41,6 +41,9 @@ header{
     padding: 0 4rem ; 
     background-color: aqua;
 }
+header a{
+    color: darkgreen;
+}
 .register{
     background: url(images/register.png) no-repeat fixed center / contain;
     height: 90vh;
@@ -55,13 +58,14 @@ header{
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 15px;
 }
+
 .question{
     height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    animation: changecolor 5s infinite alternate linear;
+    animation: changecolor 8s infinite alternate linear;
 }
 @keyframes changecolor{
 0%{
@@ -86,7 +90,7 @@ header{
     padding: 1rem;
     height: 400px;
     border-radius: 20px;
-    animation: changebg 5s infinite alternate linear;
+    animation: changebg 8s infinite alternate linear;
 }
 @keyframes changebg{
     0%{
@@ -118,10 +122,7 @@ header{
     padding: 0.3rem ;
     margin: 0.5rem;
 }
-header a{
-    color: brown;
-    margin-right: 60px;
-}
+
 .score{
     background-color: blueviolet;
     display: flex;
@@ -146,8 +147,11 @@ header a{
     background-color: yellow;
     margin: 1rem;
     padding: 3rem;
-    border-radius: 15px;
+    border-bottom-right-radius: 35px;
+    border-top-left-radius: 35px;
+   
 }
+
 @media all and (max-width: 700px){
     header{
         padding: 0;

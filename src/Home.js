@@ -10,19 +10,16 @@ function Home() {
     e.preventDefault()
     const storeddata = JSON.parse(localStorage.getItem("userdetails"))
 
-    // console.log(storeddata)
-    // console.log(name,password)
 
     const filtereddata = storeddata.filter(data => data.name === name && data.password === password)
     if(filtereddata.length > 0){
-      alert("welcome")
+      alert(`Welcome ${name}`)
       navigate("/Question")
      }
      else{
        alert("you have entered wrong credentials check your username or password or you should register first")
      } 
-    // console.log(filtereddata)
-    // navigate("/Question")
+  
 
   }
   return (

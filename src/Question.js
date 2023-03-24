@@ -1,18 +1,18 @@
 import React, { useContext, useState } from 'react';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { scoreContext } from './App';
 
 function Question() {
   const [count, setCount] = useState(0);
-  const {score , setScore} = useContext(scoreContext)
-  const {wronganswer , setwronganswer} = useContext(scoreContext)
+  const { score, setScore } = useContext(scoreContext)
+  const { wronganswer, setwronganswer } = useContext(scoreContext)
   const [match, setmatch] = useState("")
-  
-  
-  const navigate = useNavigate()
-  
 
-  
+
+  const navigate = useNavigate()
+
+
+
   const questions = [
     {
       question: "Q1:What is the capital city of France?",
@@ -98,75 +98,61 @@ function Question() {
 
 
   function handleAnswerSelect(e) {
-    
-    setmatch(e.target.value)  
+
+    setmatch(e.target.value)
   }
-  function answer () {
+  function answer() {
     const correctAnswer = questions[count].answer
     if (match === correctAnswer) {
       setScore(score + 1);
       console.log(score)
     }
-    else{
-      setwronganswer([...wronganswer,{...questions[count]}] )
+    else {
+      setwronganswer([...wronganswer, { ...questions[count] }])
     }
   }
   console.log(wronganswer)
 
-  function renderQuestion() {
-    const currentQuestion = questions[count];
-    return (
-      <div>
-        <h1>{currentQuestion.question}</h1>
-        <ul>
-          <li>
-            <input type="radio" name="answer" id="ans1" value="a" onChange={handleAnswerSelect} />
-            <label htmlFor="ans1" id="option1">{currentQuestion.a}</label>
-          </li>
-          <li>
-            <input type="radio" name="answer" id="ans2" value="b" onChange={handleAnswerSelect} />
-            <label htmlFor="ans2" id="option2">{currentQuestion.b}</label>
-          </li>
-          <li>
-            <input type="radio" name="answer" id="ans3" value="c" onChange={handleAnswerSelect} />
-            <label htmlFor="ans3" id="option3">{currentQuestion.c}</label>
-          </li>
-          <li>
-            <input type="radio" name="answer" id="ans4" value="d" onChange={handleAnswerSelect} />
-            <label htmlFor="ans4" id="option4">{currentQuestion.d}</label>
-          </li>
-        </ul>
-      </div>
-    );
-  }
-
-  // function renderResult() {
-  //   return (
-  //     <div>
-  //       <h2>Quiz completed!</h2>
-  //       <p>Your score: {score} / {questions.length}</p>
-  //     </div>
-  //   );
-  // }
-  function renderContent() {
-    if (count >= questions.length) {
-      // return renderResult();
-      navigate("/Score")
-
-    }
-    return renderQuestion();
-  }
 
   return (
     <div className='question'>
       <div className='content'>
-        {renderContent()}
-        {count < questions.length && (
-          <button onClick={() => {setCount(count + 1);answer()}}>Next</button>
-        )}
+        <h1>{questions[count].question}</h1>
+        <ul>
+          <li>
+            <input type="radio" name="answer" id="ans1" value="a" onChange={handleAnswerSelect} />
+            <label htmlFor="ans1" id="option1">{questions[count].a}</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="ans2" value="b" onChange={handleAnswerSelect} />
+            <label htmlFor="ans2" id="option2">{questions[count].b}</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="ans3" value="c" onChange={handleAnswerSelect} />
+            <label htmlFor="ans3" id="option3">{questions[count].c}</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="ans4" value="d" onChange={handleAnswerSelect} />
+            <label htmlFor="ans4" id="option4">{questions[count].d}</label>
+          </li>
+        </ul>
+        <button onClick={() => { counthandler(); answer() }}>Next</button>
       </div>
     </div>
   );
+
+
+
+  function counthandler() {
+    if (count < questions.length - 1) {
+      setCount(count + 1)
+    }
+    else {
+      navigate("/Score")
+    }
+  }
+
+
 }
 
 export default Question;
