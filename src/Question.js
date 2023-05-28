@@ -98,7 +98,6 @@ function Question() {
 
 
   function handleAnswerSelect(e) {
-
     setmatch(e.target.value)
   }
   function answer() {
@@ -120,19 +119,19 @@ function Question() {
         <h1>{questions[count].question}</h1>
         <ul>
           <li>
-            <input type="radio" name="answer" id="ans1" value="a" onChange={handleAnswerSelect} />
+            <input type="radio" name="answer" id="ans1" value="a" onChange={handleAnswerSelect} checked={false} />
             <label htmlFor="ans1" id="option1">{questions[count].a}</label>
           </li>
           <li>
-            <input type="radio" name="answer" id="ans2" value="b" onChange={handleAnswerSelect} />
+            <input type="radio" name="answer" id="ans2" value="b" onChange={handleAnswerSelect} checked={false} />
             <label htmlFor="ans2" id="option2">{questions[count].b}</label>
           </li>
           <li>
-            <input type="radio" name="answer" id="ans3" value="c" onChange={handleAnswerSelect} />
+            <input type="radio" name="answer" id="ans3" value="c" onChange={handleAnswerSelect} checked={false} />
             <label htmlFor="ans3" id="option3">{questions[count].c}</label>
           </li>
           <li>
-            <input type="radio" name="answer" id="ans4" value="d" onChange={handleAnswerSelect} />
+            <input type="radio" name="answer" id="ans4" value="d" onChange={handleAnswerSelect} checked={false} />
             <label htmlFor="ans4" id="option4">{questions[count].d}</label>
           </li>
         </ul>

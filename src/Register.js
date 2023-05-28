@@ -14,6 +14,7 @@ function Register() {
   useEffect(()=>{
     const getdetails = JSON.parse(localStorage.getItem("userdetails")) || []
     setuser(getdetails)
+    
   },[])
 
   useEffect(() => {
@@ -29,11 +30,11 @@ function Register() {
     const userdetails = {
       name: name,
       email: email,
-      password: password
+      password: password          
     }
 
     setuser([...user, userdetails])
-    alert("User registered sucessfully ")
+    alert("User registered sucessfully you can login now")
     setgo(false)
   }
 
