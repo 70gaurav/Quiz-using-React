@@ -4,14 +4,11 @@ import { scoreContext } from './App';
 
 function Question() {
   const [count, setCount] = useState(0);
-  const { score, setScore } = useContext(scoreContext)
-  const { wronganswer, setwronganswer } = useContext(scoreContext)
-  const [match, setmatch] = useState("")
+  const { score, setScore } = useContext(scoreContext);
+  const { wronganswer, setWrongAnswer } = useContext(scoreContext);
+  const [selectedOption, setSelectedOption] = useState("");
 
-
-  const navigate = useNavigate()
-
-
+  const navigate = useNavigate();
 
   const questions = [
     {
@@ -96,22 +93,28 @@ function Question() {
     }
   ]
 
-
   function handleAnswerSelect(e) {
-    setmatch(e.target.value)
+    setSelectedOption(e.target.value);
   }
-  function answer() {
-    const correctAnswer = questions[count].answer
-    if (match === correctAnswer) {
-      setScore(score + 1);
-      console.log(score)
-    }
-    else {
-      setwronganswer([...wronganswer, { ...questions[count] }])
-    }
-  }
-  console.log(wronganswer)
 
+  function answer() {
+    const correctAnswer = questions[count].answer;
+    if (selectedOption === correctAnswer) {
+      setScore(score + 1);
+    } else {
+      setWrongAnswer([...wronganswer, { ...questions[count] }]);
+    }
+  }
+
+  function handleNextQuestion() {
+    answer();
+    setSelectedOption("");
+    if (count < questions.length - 1) {
+      setCount(count + 1);
+    } else {
+      navigate("/Score");
+    }
+  }
 
   return (
     <div className='question'>
@@ -119,39 +122,54 @@ function Question() {
         <h1>{questions[count].question}</h1>
         <ul>
           <li>
-            <input type="radio" name="answer" id="ans1" value="a" onChange={handleAnswerSelect} checked={false} />
+            <input
+              type="radio"
+              name="answer"
+              id="ans1"
+              value="a"
+              onChange={handleAnswerSelect}
+              checked={selectedOption === "a"}
+            />
             <label htmlFor="ans1" id="option1">{questions[count].a}</label>
           </li>
           <li>
-            <input type="radio" name="answer" id="ans2" value="b" onChange={handleAnswerSelect} checked={false} />
+            <input
+              type="radio"
+              name="answer"
+              id="ans2"
+              value="b"
+              onChange={handleAnswerSelect}
+              checked={selectedOption === "b"}
+            />
             <label htmlFor="ans2" id="option2">{questions[count].b}</label>
           </li>
           <li>
-            <input type="radio" name="answer" id="ans3" value="c" onChange={handleAnswerSelect} checked={false} />
+            <input
+              type="radio"
+              name="answer"
+              id="ans3"
+              value="c"
+              onChange={handleAnswerSelect}
+              checked={selectedOption === "c"}
+            />
             <label htmlFor="ans3" id="option3">{questions[count].c}</label>
           </li>
           <li>
-            <input type="radio" name="answer" id="ans4" value="d" onChange={handleAnswerSelect} checked={false} />
+            <input
+              type="radio"
+              name="answer"
+              id="ans4"
+              value="d"
+              onChange={handleAnswerSelect}
+              checked={selectedOption === "d"}
+            />
             <label htmlFor="ans4" id="option4">{questions[count].d}</label>
           </li>
         </ul>
-        <button onClick={() => { counthandler(); answer() }}>Next</button>
+        <button onClick={handleNextQuestion}>Next</button>
       </div>
     </div>
   );
-
-
-
-  function counthandler() {
-    if (count < questions.length - 1) {
-      setCount(count + 1)
-    }
-    else {
-      navigate("/Score")
-    }
-  }
-
-
 }
 
 export default Question;

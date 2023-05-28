@@ -1,9 +1,16 @@
 import React, { useContext } from 'react'
 import { scoreContext } from './App'
+import {  useNavigate } from 'react-router-dom'
 
 function Score() {
-  const { score } = useContext(scoreContext)
-  const { wronganswer } = useContext(scoreContext)
+  const navigate = useNavigate()
+  const { score , setScore , wronganswer , setWrongAnswer } = useContext(scoreContext)
+
+  function replayHandler () {
+    setScore(0)
+    setWrongAnswer([])
+    navigate("/question")
+  }
 
   return (
     <div className='score'>
@@ -33,6 +40,7 @@ function Score() {
           )
         })}
       </div>
+        <button onClick={replayHandler}>Play again</button>
     </div>
   )
 }

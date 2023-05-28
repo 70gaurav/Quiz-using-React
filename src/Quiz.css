@@ -151,6 +151,11 @@ header a{
     border-top-left-radius: 35px;
    
 }
+.score button{
+    font-size: 22px;
+    padding: 5px;
+    border-radius: 5px;
+}
 
 @media all and (max-width: 700px){
     header{
